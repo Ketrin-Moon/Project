@@ -22,8 +22,8 @@
 #include <fcntl.h>
 #include <signal.h>
 #include <unistd.h>
-
-#define HASHTAB_SIZE 150
+#include <curses.h>
+#define HASHTAB_SIZE 300
 
 struct msgvar{
 	int request;
