@@ -11,6 +11,7 @@ int main()
 {
 	int fd_socket; char buf[1536]; char word[256]; uint32_t hash;
 	struct sockaddr_in s_addr;
+	struct win interface=create_interface();
 	struct data_c *msg;
 	setlocale(LC_ALL, "Rus");
 	socklen_t len=sizeof(struct sockaddr);
@@ -23,30 +24,33 @@ int main()
 		perror("connect");
 		exit(-1);
 	}
-
+	wprintw(interface.wnd,"Ввведите слово:");
 	while(1){
 		hash=0;
 		memset(buf,0,1536);
 		bzero(&word,256);
-		//bzero(&msg,sizeof(msg));
-		printf("Enter:");
-		scanf("%s",&word);
-//		printf("%d \n", strlen(word));
+		wrefresh(interface.wnd);
+		wgetstr(interface.wnd,word);
+		wclear(interface.wnd);
 		hash=jenkins_hash(word,strlen(word));
-//		printf("HASH: %d\n", hash);
 		if(send(fd_socket,&hash,sizeof(uint32_t),0)==-1){
 			perror("send");
 			exit(-1);
 		}
-//		printf("Send...\n");
 		if(recv(fd_socket,buf,1536,0)==-1){
 			perror("recv");
 			exit(-1);
 		}
 		msg=(struct data_c*)buf;
-//		printf("BUF: %s\n", buf);
-		printf("OUT: %s\n", msg->out);
-		printf("SIN: %s\n",msg->sin);
-		printf("VAL: %s\n",msg->val);
+		wclear(interface.wnd2);
+		wclear(interface.wnd3);
+		wclear(interface.wnd4);
+		wprintw(interface.wnd2,"Перевод: %s", msg->out);
+		wprintw(interface.wnd3,"Синонимы\n %s",msg->sin);
+		wprintw(interface.wnd4,"Значение слова\n%s",msg->val);
+		wrefresh(interface.wnd2);
+		wrefresh(interface.wnd3);
+		wrefresh(interface.wnd4);
 	}
+	del_interface(&interface);
 }

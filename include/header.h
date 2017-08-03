@@ -22,6 +22,10 @@
 #include <fcntl.h>
 #include <signal.h>
 #include <unistd.h>
+#include <sys/types.h>
+#include <curses.h>
+#include <termios.h>
+
 
 #define HASHTAB_SIZE 150
 
@@ -51,6 +55,7 @@ struct win{
         WINDOW*wnd2;
         WINDOW*wnd3;
 	WINDOW*wnd4;
+	WINDOW*wnd5;
         WINDOW*subwnd;
         WINDOW*subwnd2;
         WINDOW*subwnd3;
