@@ -24,9 +24,9 @@ void create_hashtable(struct for_func_table *table)
                         i++;
                         read(fd_file,&c,sizeof(char));
                 }while(c!='*');
-		printf("%s ", word);
+//		printf("%s ", word);
                 hash=jenkins_hash(word,strlen(word));
-		printf("%d ", hash);
+//		printf("%d ", hash);
                 c='0';
                 i=0;
                 memset(word,0,1024);
@@ -36,7 +36,7 @@ void create_hashtable(struct for_func_table *table)
                         i++;
                         read(fd_file,&c,sizeof(char));
                 }while(c!='*');
-		printf("%s\n", table->hashtable[hash]);
+//		printf("%s\n", table->hashtable[hash]);
 		read(fd_file,&c,sizeof(char));
 		i=0;
 
@@ -68,6 +68,9 @@ void hashtab_lookup(struct data_client *message, struct for_func_table out_table
 		strcpy(message->data.sin, sin_table.hashtable[index]);
 		strcpy(message->data.val, val_table.hashtable[index]);
 	}
+//	printf("out: %s\n", message->data.out);
+//	printf("sin: %s\n", message->data.sin);
+//	printf("val: %s\n", message->data.val);
 //	return *message;
 }
 
@@ -75,9 +78,11 @@ void reply(struct msgvar *var, struct for_func_table out_table,
                         struct for_func_table sin_table, struct for_func_table val_table)
 {
 	struct data_client message;
-
+//	printf("REPLY\n");
 	while(1){
 		msgrcv(var->request, &message, sizeof(message), 1L, 0);
+//		printf("Type: %li\n", message.type);
+//		printf("hash: %d\n", message.hash);
 		message.type = 2L;
 		hashtab_lookup(&message, out_table, sin_table, val_table);
 		msgsnd(var->reply, &message, sizeof(message), 0);
