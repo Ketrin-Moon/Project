@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 #AC_PREREQ([2.69])
-AC_INIT([src/client.c])
+AC_INIT([src/client.c], [src/server.c])
 
 #AC_CONFIG_SRCDIR([src/client.c], [lib/hash.c])
 #AC_CONFIG_HEADERS([header.h])
@@ -20,5 +20,6 @@ AC_CHECK_HEADERS([arpa/inet.h fcntl.h netdb.h netinet/in.h stdlib.h string.h sys
 AC_CHECK_FUNCS([bzero memset socket])
 #AC_CONFIG_FILES([Makefile])
 AM_INIT_AUTOMAKE([Makefile], [0.1])
+#AM_LDFLAGS = -lncurses
 
 AC_OUTPUT([Makefile src/Makefile]) 

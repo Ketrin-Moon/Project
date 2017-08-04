@@ -25,9 +25,9 @@
 #include <sys/types.h>
 #include <curses.h>
 #include <termios.h>
+#include <wchar.h>
 
-
-#define HASHTAB_SIZE 150
+#define HASHTAB_SIZE 201
 
 struct msgvar{
 	int request;
@@ -60,6 +60,7 @@ struct win{
         WINDOW*subwnd2;
         WINDOW*subwnd3;
 	WINDOW*subwnd4;
+	WINDOW*subwnd5;
 };
 
 struct win create_interface();

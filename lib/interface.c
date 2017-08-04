@@ -1,22 +1,7 @@
-#include <stdio.h>
-#include <termios.h>
-#include <sys/ioctl.h>
-#include <signal.h>
-#include <stdlib.h>
-#include <curses.h>
-#include <sys/types.h>
+#include "../include/header.h"
 
-struct win{
-        WINDOW*wnd;
-        WINDOW*wnd2;
-        WINDOW*wnd3;
-        WINDOW*wnd4;
-        WINDOW*wnd5;
-        WINDOW*subwnd;
-        WINDOW*subwnd2;
-        WINDOW*subwnd3;
-        WINDOW*subwnd4;
-};
+//extern struct win interface;
+struct win interface;
 
 WINDOW* window1(int y, int x, int py, int px){
         WINDOW* wnd;
@@ -44,32 +29,35 @@ void color_pair(WINDOW *win, int color_bg)
 }
 
 struct win create_interface(){
-	struct win interface;
 	int row, col;
+
         initscr();
         cbreak();
         refresh();
         echo();
 	curs_set(0);
-	getmaxyx(stdscr, row, col);
-        interface.wnd5=window1(row,col,0,0);
-	color_pair(interface.wnd5, 1);
-	wrefresh(interface.wnd5);
-        interface.wnd=window1(row-35,col-2,2,1);
+
+	interface.wnd=window1(4,92,1,1);
+        interface.subwnd=window2(interface.wnd,2,78,1,1);
 	color_pair(interface.wnd, 4);
-//        interface.subwnd=window2(interface.wnd,row-35,col-2,1,1);
-        interface.wnd2=window1(row-35,col-2,row - 30,1);
+	color_pair(interface.subwnd, 4);
+
+	interface.wnd2=window1(4,92,5,1);
+        interface.subwnd2=window2(interface.wnd2,2,78,1,1);
+
 	color_pair(interface.wnd2, 4);
-
-  //      interface.subwnd2=window2(interface.wnd2,row-35,col-2,row-34,1);
-        interface.wnd3=window1(row-20,col/2-2,row-22,1);
+	color_pair(interface.subwnd2, 4);
+ 
+	interface.wnd3=window1(10,45,9,1);
+        interface.subwnd3=window2(interface.wnd3,8,40,1,1);
 	color_pair(interface.wnd3, 4);
+	color_pair(interface.subwnd3, 4);
 
-    //    interface.subwnd3=window2(interface.wnd3,row-20,col/2,row-25,1);
-        interface.wnd4=window1(row-20,col/2-1,row-22,col/2);
+        interface.wnd4=window1(10,45,9,47);
+        interface.subwnd4=window2(interface.wnd4,8,40,1,1);
 	color_pair(interface.wnd4, 4);
+	color_pair(interface.subwnd4, 4);
 
-//        interface.subwnd4=window2(interface.wnd4,row-20,col/2-2,row-25, col-88);
 	wrefresh(interface.wnd);
 	wrefresh(interface.wnd2);
 	wrefresh(interface.wnd3);
@@ -87,11 +75,4 @@ void  del_interface(struct win *interface){
         delwin(interface->subwnd3);
         endwin();
         exit(EXIT_SUCCESS);
-}
-
-int main(){
-	 struct win interface=create_interface();
-	 getchar();
-	 del_interface(&interface);
-	return 0;
 }
