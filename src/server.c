@@ -40,12 +40,15 @@ int main()
         bzero(&sin_table, sizeof(sin_table));
         bzero(&val_table, sizeof(val_table));
 
+	strncpy(out_table.name, "../txt/", 20);
         strncpy(out_table.name, "out_table.txt", 20);
        	pthread_create(&p_out, NULL, (void*)create_hashtable, &out_table);
+	strncpy(sin_table.name, "../txt/", 20);
         strncpy(sin_table.name, "sin_table.txt", 20);
         pthread_create(&p_sin, NULL, (void*)create_hashtable, &sin_table);
+	strncpy(val_table.name, "../txt/", 20);
         strncpy(val_table.name, "val_table.txt", 20);
-      	 pthread_create(&p_val, NULL, (void*)create_hashtable, &val_table);
+   	pthread_create(&p_val, NULL, (void*)create_hashtable, &val_table);
 
         pthread_join(p_out, NULL);
         pthread_join(p_sin, NULL);
