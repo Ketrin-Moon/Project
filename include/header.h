@@ -6,15 +6,8 @@
 #include <netinet/in.h>
 #include <string.h>
 #include <locale.h>
-#include <pcap/pcap.h>
-#include <netinet/ip.h>
-#include <netinet/udp.h>
 #include <arpa/inet.h>
-#include <netdb.h>
 #include <sys/ioctl.h>
-#include <net/if.h>
-#include <linux/if_packet.h>
-#include <netinet/if_ether.h>
 #include <sys/ipc.h>
 #include <sys/msg.h>
 #include <errno.h>
