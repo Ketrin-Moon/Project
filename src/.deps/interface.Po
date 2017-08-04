@@ -69,9 +69,9 @@ interface.o: ../lib/interface.c ../lib/../include/header.h \
  /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
  /usr/include/x86_64-linux-gnu/bits/environments.h \
  /usr/include/x86_64-linux-gnu/bits/confname.h /usr/include/getopt.h \
- /usr/include/curses.h /usr/include/ncurses_dll.h \
+ /usr/include/ncurses.h /usr/include/ncurses_dll.h \
  /usr/lib/gcc/x86_64-linux-gnu/4.7/include/stdbool.h \
- /usr/include/unctrl.h /usr/include/termios.h \
+ /usr/include/unctrl.h /usr/include/curses.h /usr/include/termios.h \
  /usr/include/x86_64-linux-gnu/bits/termios.h
 
 ../lib/../include/header.h:
@@ -262,13 +262,15 @@ interface.o: ../lib/interface.c ../lib/../include/header.h \
 
 /usr/include/getopt.h:
 
-/usr/include/curses.h:
+/usr/include/ncurses.h:
 
 /usr/include/ncurses_dll.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/4.7/include/stdbool.h:
 
 /usr/include/unctrl.h:
+
+/usr/include/curses.h:
 
 /usr/include/termios.h:
 

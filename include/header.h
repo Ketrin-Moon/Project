@@ -16,7 +16,7 @@
 #include <signal.h>
 #include <unistd.h>
 #include <sys/types.h>
-#include <curses.h>
+#include <ncurses.h>
 #include <termios.h>
 #include <wchar.h>
 

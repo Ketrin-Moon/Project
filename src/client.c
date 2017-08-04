@@ -13,7 +13,7 @@ int main()
 	struct sockaddr_in s_addr;
 	struct win interface=create_interface();
 	struct data_c *msg;
-	setlocale(LC_ALL, "");
+	setlocale(LC_CTYPE, "ru_RU.UTF-8");
 	socklen_t len=sizeof(struct sockaddr);
 	s_addr.sin_family=AF_INET;
 	s_addr.sin_port=htons(3452);

@@ -5,7 +5,7 @@ void create_hashtable(struct for_func_table *table)
         int fd_file; char c='0'; int i, j; char word[1024];
         uint32_t hash;
 	int bytes;
-	setlocale(LC_ALL, "Rus");
+	setlocale(LC_CTYPE, "ru_RU.UTF8");
         if((fd_file = open(table->name,O_RDONLY)) == -1){
 		printf("FD %d\n", fd_file);
 		exit(1);

@@ -30,7 +30,7 @@ void color_pair(WINDOW *win, int color_bg)
 
 struct win create_interface(){
 	int row, col;
-
+	setlocale(LC_CTYPE, "ru_RU.UTF-8");
         initscr();
         cbreak();
         refresh();
